@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import pandas as pd
 import iso639
 
-df_merged = pd.read_csv('/Users/florencialuppi/Desktop/DS/P1/Dataset/movies_dataset_transformed.csv')
+df_merged = pd.read_csv('movies_dataset_transformed.csv')
 
 app=FastAPI()
 
