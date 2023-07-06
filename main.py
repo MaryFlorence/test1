@@ -120,3 +120,18 @@ def get_director(nombre_director: str):
 
 # ML
 @app.get('/recomendacion/{titulo}')
+def recomendacion(titulo):
+   
+    titulo = titulo.lower()
+    indice_referencia = df_merged[df_merged['title'].str.lower() == titulo].index
+    if len(indice_referencia) == 0:
+        return {"error": f"No se encontró información para la película {titulo}"}
+
+    _, indices_similares = knn.kneighbors(tfidf_matrix[indice_referencia])
+    peliculas_similares = df_merged.loc[indices_similares.flatten(), 'title']
+    
+    peliculas_similares = peliculas_similares[peliculas_similares != titulo].unique()
+    
+    peliculas_recomendadas = peliculas_similares[:5]
+    
+    return {"recomendaciones": peliculas_recomendadas.tolist()}
