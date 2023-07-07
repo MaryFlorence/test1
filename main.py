@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 import pandas as pd
+import numpy as np
 import iso639
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.neighbors import NearestNeighbors
 
 df_merged = pd.read_csv('movies_dataset_transformed.csv')
 
