@@ -121,20 +121,36 @@ def get_director(nombre_director: str):
 
 
 
-# ML
+#Reemplazar nan de title ''
+df_merged['title'].fillna('', inplace=True)
+
+# Crear el vectorizador TF-IDF
+vectorizer = TfidfVectorizer(stop_words='english')
+tfidf_matrix = vectorizer.fit_transform(df_merged['title'])
+
+# Crear el modelo de vecinos más cercanos
+knn = NearestNeighbors(n_neighbors=10,metric='cosine', algorithm='brute')
+knn.fit(tfidf_matrix)
+
+
 @app.get('/recomendacion/{titulo}')
 def recomendacion(titulo):
-   
+    # Obtener el índice de la película de referencia
     titulo = titulo.lower()
     indice_referencia = df_merged[df_merged['title'].str.lower() == titulo].index
     if len(indice_referencia) == 0:
         return {"error": f"No se encontró información para la película {titulo}"}
-
+    
+    # Calcular los k vecinos más cercanos a la película de referencia
     _, indices_similares = knn.kneighbors(tfidf_matrix[indice_referencia])
+    
+    # Obtener los nombres de las películas más similares
     peliculas_similares = df_merged.loc[indices_similares.flatten(), 'title']
     
+    # Eliminar la película de referencia y las duplicadas
     peliculas_similares = peliculas_similares[peliculas_similares != titulo].unique()
     
+    # Tomar solo las primeras 5 recomendaciones
     peliculas_recomendadas = peliculas_similares[:5]
     
     return {"recomendaciones": peliculas_recomendadas.tolist()}
