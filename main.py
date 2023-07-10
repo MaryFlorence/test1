@@ -106,7 +106,10 @@ def productoras_exitosas(productora: str):
 def get_director(nombre_director: str):
     resultado = {}
 
-    director_info = df_merged[df_merged['director'].str.lower() == nombre_director.lower()]
+    # Reducir el DataFrame a los primeros 5,000 registros
+    df_reducido = df_merged.head(5000)
+
+    director_info = df_reducido[df_reducido['director'].str.lower() == nombre_director.lower()]
     if not director_info.empty:
         director_success = director_info['return'].values[0]
         peliculas_info = director_info[['title', 'release_date', 'return', 'budget', 'revenue']].values.tolist()
