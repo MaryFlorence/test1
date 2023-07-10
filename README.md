@@ -7,7 +7,9 @@ Este proyecto es parte de la Carrera de Data Science en SoyHenry, DT12/2023.
 El objetivo del proyecto es simular el trabajo de un Data Scientist en una start-up que provee servicios de agregación de plataformas de streaming, y lograr un MVP (Minimum Viable Product).  
 En este proyecto creo mi primer modelo de ML que soluciona un problema de negocio: un sistema de recomendación de peliculas por similitud.
 
-### Desarrollo
+### Flujo de trabajo
+![Flujo ML]()
+
 
 
 ### Metodos utilizados
