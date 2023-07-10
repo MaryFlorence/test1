@@ -8,7 +8,7 @@ El objetivo del proyecto es simular el trabajo de un Data Scientist en una start
 En este proyecto creo mi primer modelo de ML que soluciona un problema de negocio: un sistema de recomendación de peliculas por similitud.
 
 ### Flujo de trabajo
-![Flujo ML]()
+![Flujo ML](https://github.com/MaryFlorence/test1/blob/master/flujo%20ML%20Ops.png)
 
 
 
