@@ -36,6 +36,7 @@ En este repositorio se encuentran los notebooks de ETL y EDA para mayor detalle.
 ## Exploremos la API 
 Render: https://test1deploy.onrender.com/docs#/
 
+En el archivo main se encuentran las funciones que consume la API.
 La API proporciona diversas funciones y características basadas en el análisis de datos y técnicas de Machine Learning para interactuar con el conjunto de datos de películas. A continuación, se describen las principales funciones disponibles:
 
 1. peliculas_idioma(Idioma: str)
